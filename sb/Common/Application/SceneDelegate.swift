@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             networkClient: networkClient,
             mapper: mapper
         )
-        let refreshController = TradingPairsRefreshControllerImpl(refreshRate: 100)
+        let refreshController = TradingPairsRefreshControllerImpl(refreshRate: 5)
         let dataStore = TradingPairsDataStoreImpl()
         let viewModel = TradingPairsViewModelImpl(
             dataStore: dataStore,
