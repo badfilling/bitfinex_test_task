@@ -9,8 +9,9 @@ import UIKit
 
 class TradingPairsView: UIView {
     
-    typealias DataSource = UICollectionViewDiffableDataSource<Int, TradingPairCellViewModel>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Int, TradingPairCellViewModel>
+    private typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String>
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -20,19 +21,45 @@ class TradingPairsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(
             frame: .zero,
-            collectionViewLayout: createLayout()
+            collectionViewLayout: TradingPairsViewLayout.generate()
         )
         
         cv.register(TradingPairCell.self, forCellWithReuseIdentifier: TradingPairCell.cellIdentifier)
         return cv
     }()
     
-    lazy var dataSource = makeDataSource()
+    private lazy var dataSource = makeDataSource()
     
-    func setupViews() {
+    private var itemsStore: [String: TradingPairItemModel] = [:]
+    
+    func load(items: [TradingPairItemModel]) {
+        updateStore(with: items)
+        
+        var snapshot = TradingPairsView.Snapshot()
+        snapshot.appendSections([0])
+        snapshot.appendItems(items.map { $0.id }, toSection: 0)
+        
+        dataSource.apply(snapshot)
+    }
+    
+    func update(with items: [TradingPairItemModel]) {
+        updateStore(with: items)
+        
+        var snapshot = dataSource.snapshot()
+        snapshot.reconfigureItems(items.map { $0.id })
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+}
+
+extension TradingPairsView {
+    private func updateStore(with items: [TradingPairItemModel]) {
+        itemsStore = Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0) })
+    }
+    
+    private func setupViews() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = dataSource
         addSubview(collectionView)
@@ -44,43 +71,18 @@ class TradingPairsView: UIView {
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-}
-
-private extension TradingPairsView {
-    func createLayout() -> UICollectionViewCompositionalLayout {
-        
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .estimated(20)
-        )
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .estimated(100)
-        )
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 8
-        section.contentInsets = .init(top: 16, leading: 16, bottom: 0, trailing: 16)
-        
-        return .init(section: section)
-    }
     
-    func makeDataSource() -> DataSource {
-        return DataSource(collectionView: collectionView) { [weak self] cv, indexPath, item -> UICollectionViewCell? in
+    private func makeDataSource() -> DataSource {
+        return DataSource(collectionView: collectionView) { [weak self] cv, indexPath, itemId -> UICollectionViewCell? in
             
             guard let self = self else { return nil }
             
             if let cell = cv.dequeueReusableCell(
                 withReuseIdentifier: TradingPairCell.cellIdentifier,
                 for: indexPath
-            ) as? TradingPairCell {
-                cell.setup(with: item)
+            ) as? TradingPairCell,
+               let model = self.itemsStore[itemId] {
+                cell.setup(with: model)
                 return cell
             }
             

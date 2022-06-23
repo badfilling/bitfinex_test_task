@@ -13,14 +13,17 @@ class TradingPairsViewController: UIViewController {
     private let viewModel: TradingPairsViewModel
     private var bin = Set<AnyCancellable>()
     
-    var mainView: TradingPairsView {
+    private var mainView: TradingPairsView {
         return self.view as! TradingPairsView
     }
+    
+    private let searchController = UISearchController(searchResultsController: nil)
     
     init(viewModel: TradingPairsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         bindViewModel()
+        setupSearchController()
     }
     
     required init?(coder: NSCoder) {
@@ -29,8 +32,8 @@ class TradingPairsViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        self.title = "Pairs prices"
         self.view = TradingPairsView(frame: .zero)
-        mainView.setupViews()
     }
     
     override func viewDidLoad() {
@@ -40,6 +43,15 @@ class TradingPairsViewController: UIViewController {
 }
 
 private extension TradingPairsViewController {
+    func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Enter coin code"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        searchController.searchBar.searchBarStyle = .minimal
+    }
+    
     func bindViewModel() {
         viewModel.output
             .receive(on: DispatchQueue.main)
@@ -47,15 +59,24 @@ private extension TradingPairsViewController {
                 switch output {
                 case let .loaded(items):
                     self?.load(items: items)
+                case let .updated(items):
+                    self?.update(with: items)
                 }
         }.store(in: &bin)
     }
     
-    func load(items: [TradingPairCellViewModel]) {
-        var snapshot = TradingPairsView.Snapshot()
-        snapshot.appendSections([0])
-        snapshot.appendItems(items, toSection: 0)
-        
-        mainView.dataSource.apply(snapshot)
+    func load(items: [TradingPairItemModel]) {
+        mainView.load(items: items)
+    }
+    
+    func update(with items: [TradingPairItemModel]) {
+        mainView.update(with: items)
+    }
+}
+
+extension TradingPairsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchInput = searchController.searchBar.text else { return }
+        viewModel.input.send(.search(text: searchInput))
     }
 }

@@ -24,9 +24,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createTradingPairsScreen() -> UIViewController {
-        let viewModel = TradingPairsViewModelImpl()
+        let dataStore = TradingPairsDataStoreImpl()
+        let networkClient = NetworkClientImpl(
+            session: URLSession.shared,
+            environment: DefaultEnvironment()
+        )
+        let mapper = TradingPairsMapperImpl()
+        let service = TradingPairsServiceImpl(
+            networkClient: networkClient,
+            mapper: mapper
+        )
+        let viewModel = TradingPairsViewModelImpl(
+            dataStore: dataStore,
+            service: service
+        )
         let vc = TradingPairsViewController(viewModel: viewModel)
-        return vc
+        return UINavigationController(rootViewController: vc)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

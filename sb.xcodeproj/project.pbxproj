@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF3A106228627E7C0044E0CF /* TradingPairsDataStoreImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A106128627E7C0044E0CF /* TradingPairsDataStoreImpl.swift */; };
+		DF3A106428627EB80044E0CF /* TradingPairsViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A106328627EB80044E0CF /* TradingPairsViewLayout.swift */; };
+		DF3A10672862FB010044E0CF /* TradingPairsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A10662862FB010044E0CF /* TradingPairsDataStore.swift */; };
+		DF3A10692862FB220044E0CF /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A10682862FB220044E0CF /* NetworkClient.swift */; };
+		DF3A106B2862FBCF0044E0CF /* NetworkClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A106A2862FBCF0044E0CF /* NetworkClientImpl.swift */; };
+		DF3A106D2863070E0044E0CF /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3A106C2863070E0044E0CF /* Collection.swift */; };
+		DF78673528645D47001C1027 /* TradingPairsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78673428645D47001C1027 /* TradingPairsService.swift */; };
+		DF78673728645D85001C1027 /* TradingPairsServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78673628645D85001C1027 /* TradingPairsServiceImpl.swift */; };
+		DF78673A2864B20A001C1027 /* TradingPairResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867392864B20A001C1027 /* TradingPairResponse.swift */; };
+		DF78673C2864B21D001C1027 /* ArrayResponseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78673B2864B21D001C1027 /* ArrayResponseDecodable.swift */; };
+		DF78673E2864B245001C1027 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78673D2864B245001C1027 /* Environment.swift */; };
+		DF7867402864B252001C1027 /* DefaultEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78673F2864B252001C1027 /* DefaultEnvironment.swift */; };
+		DF7867462864B2FD001C1027 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867452864B2FD001C1027 /* Endpoint.swift */; };
+		DF7867482864B416001C1027 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867472864B416001C1027 /* URL.swift */; };
+		DF78674A2864B444001C1027 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867492864B444001C1027 /* Publisher.swift */; };
+		DF78674D2864B93F001C1027 /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78674C2864B93F001C1027 /* CommonError.swift */; };
+		DF78674F2864B9A2001C1027 /* TradingPairsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78674E2864B9A2001C1027 /* TradingPairsMapper.swift */; };
+		DF7867512864B9B2001C1027 /* TradingPairsMapperImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867502864B9B2001C1027 /* TradingPairsMapperImpl.swift */; };
 		DFE30AFE2862346D006D6167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30AFD2862346D006D6167 /* AppDelegate.swift */; };
 		DFE30B002862346D006D6167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30AFF2862346D006D6167 /* SceneDelegate.swift */; };
 		DFE30B022862346D006D6167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B012862346D006D6167 /* ViewController.swift */; };
@@ -18,7 +36,7 @@
 		DFE30B3428623A1D006D6167 /* TradingPairsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B3328623A1D006D6167 /* TradingPairsViewController.swift */; };
 		DFE30B3628623A38006D6167 /* TradingPairsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B3528623A38006D6167 /* TradingPairsView.swift */; };
 		DFE30B3828623EE3006D6167 /* TradingPairCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B3728623EE3006D6167 /* TradingPairCell.swift */; };
-		DFE30B3B286242A6006D6167 /* TradingPairCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B3A286242A6006D6167 /* TradingPairCellViewModel.swift */; };
+		DFE30B3B286242A6006D6167 /* TradingPairItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B3A286242A6006D6167 /* TradingPairItemModel.swift */; };
 		DFE30B3E28624339006D6167 /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B3D28624339006D6167 /* UICollectionViewCell.swift */; };
 		DFE30B402862468D006D6167 /* TradingPairsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B3F2862468D006D6167 /* TradingPairsViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -41,6 +59,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF3A106128627E7C0044E0CF /* TradingPairsDataStoreImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsDataStoreImpl.swift; sourceTree = "<group>"; };
+		DF3A106328627EB80044E0CF /* TradingPairsViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsViewLayout.swift; sourceTree = "<group>"; };
+		DF3A10662862FB010044E0CF /* TradingPairsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsDataStore.swift; sourceTree = "<group>"; };
+		DF3A10682862FB220044E0CF /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		DF3A106A2862FBCF0044E0CF /* NetworkClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientImpl.swift; sourceTree = "<group>"; };
+		DF3A106C2863070E0044E0CF /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		DF78673428645D47001C1027 /* TradingPairsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsService.swift; sourceTree = "<group>"; };
+		DF78673628645D85001C1027 /* TradingPairsServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsServiceImpl.swift; sourceTree = "<group>"; };
+		DF7867392864B20A001C1027 /* TradingPairResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairResponse.swift; sourceTree = "<group>"; };
+		DF78673B2864B21D001C1027 /* ArrayResponseDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayResponseDecodable.swift; sourceTree = "<group>"; };
+		DF78673D2864B245001C1027 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		DF78673F2864B252001C1027 /* DefaultEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnvironment.swift; sourceTree = "<group>"; };
+		DF7867452864B2FD001C1027 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		DF7867472864B416001C1027 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		DF7867492864B444001C1027 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
+		DF78674C2864B93F001C1027 /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
+		DF78674E2864B9A2001C1027 /* TradingPairsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsMapper.swift; sourceTree = "<group>"; };
+		DF7867502864B9B2001C1027 /* TradingPairsMapperImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsMapperImpl.swift; sourceTree = "<group>"; };
 		DFE30AFA2862346D006D6167 /* sb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFE30AFD2862346D006D6167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFE30AFF2862346D006D6167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,7 +92,7 @@
 		DFE30B3328623A1D006D6167 /* TradingPairsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsViewController.swift; sourceTree = "<group>"; };
 		DFE30B3528623A38006D6167 /* TradingPairsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsView.swift; sourceTree = "<group>"; };
 		DFE30B3728623EE3006D6167 /* TradingPairCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairCell.swift; sourceTree = "<group>"; };
-		DFE30B3A286242A6006D6167 /* TradingPairCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairCellViewModel.swift; sourceTree = "<group>"; };
+		DFE30B3A286242A6006D6167 /* TradingPairItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairItemModel.swift; sourceTree = "<group>"; };
 		DFE30B3D28624339006D6167 /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
 		DFE30B3F2862468D006D6167 /* TradingPairsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +122,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF3A106028627E740044E0CF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DF3A10652862FAF70044E0CF /* Protocols */,
+				DF3A106128627E7C0044E0CF /* TradingPairsDataStoreImpl.swift */,
+				DF78673628645D85001C1027 /* TradingPairsServiceImpl.swift */,
+				DF7867502864B9B2001C1027 /* TradingPairsMapperImpl.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DF3A10652862FAF70044E0CF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DF3A10662862FB010044E0CF /* TradingPairsDataStore.swift */,
+				DF78673428645D47001C1027 /* TradingPairsService.swift */,
+				DF78674E2864B9A2001C1027 /* TradingPairsMapper.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DF7867382864B1FD001C1027 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DF7867392864B20A001C1027 /* TradingPairResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DF7867412864B290001C1027 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				DF7867432864B2A2001C1027 /* Implementations */,
+				DF7867422864B297001C1027 /* Protocols */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		DF7867422864B297001C1027 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DF78673D2864B245001C1027 /* Environment.swift */,
+				DF3A10682862FB220044E0CF /* NetworkClient.swift */,
+				DF78673B2864B21D001C1027 /* ArrayResponseDecodable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DF7867432864B2A2001C1027 /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				DF78673F2864B252001C1027 /* DefaultEnvironment.swift */,
+				DF3A106A2862FBCF0044E0CF /* NetworkClientImpl.swift */,
+				DF7867452864B2FD001C1027 /* Endpoint.swift */,
+			);
+			path = Implementations;
+			sourceTree = "<group>";
+		};
+		DF78674B2864B928001C1027 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DF78674C2864B93F001C1027 /* CommonError.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		DFE30AF12862346D006D6167 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +257,8 @@
 		DFE30B2F2862356C006D6167 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				DF78674B2864B928001C1027 /* Utils */,
+				DF7867412864B290001C1027 /* Networking */,
 				DFE30B3C2862432E006D6167 /* Extensions */,
 				DFE30B2E286234F9006D6167 /* Resources */,
 				DFE30B2D286234D6006D6167 /* Application */,
@@ -173,6 +277,8 @@
 		DFE30B3128623A05006D6167 /* TradingPairs */ = {
 			isa = PBXGroup;
 			children = (
+				DF7867382864B1FD001C1027 /* Models */,
+				DF3A106028627E740044E0CF /* Services */,
 				DFE30B392862429C006D6167 /* ViewModels */,
 				DFE30B3228623A0A006D6167 /* Views */,
 			);
@@ -185,6 +291,7 @@
 				DFE30B3328623A1D006D6167 /* TradingPairsViewController.swift */,
 				DFE30B3528623A38006D6167 /* TradingPairsView.swift */,
 				DFE30B3728623EE3006D6167 /* TradingPairCell.swift */,
+				DF3A106328627EB80044E0CF /* TradingPairsViewLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,7 +299,7 @@
 		DFE30B392862429C006D6167 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				DFE30B3A286242A6006D6167 /* TradingPairCellViewModel.swift */,
+				DFE30B3A286242A6006D6167 /* TradingPairItemModel.swift */,
 				DFE30B3F2862468D006D6167 /* TradingPairsViewModel.swift */,
 			);
 			path = ViewModels;
@@ -201,7 +308,10 @@
 		DFE30B3C2862432E006D6167 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DF7867472864B416001C1027 /* URL.swift */,
 				DFE30B3D28624339006D6167 /* UICollectionViewCell.swift */,
+				DF3A106C2863070E0044E0CF /* Collection.swift */,
+				DF7867492864B444001C1027 /* Publisher.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -336,15 +446,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF78674A2864B444001C1027 /* Publisher.swift in Sources */,
 				DFE30B402862468D006D6167 /* TradingPairsViewModel.swift in Sources */,
-				DFE30B3B286242A6006D6167 /* TradingPairCellViewModel.swift in Sources */,
+				DF3A106B2862FBCF0044E0CF /* NetworkClientImpl.swift in Sources */,
+				DF3A10672862FB010044E0CF /* TradingPairsDataStore.swift in Sources */,
+				DFE30B3B286242A6006D6167 /* TradingPairItemModel.swift in Sources */,
+				DF78674D2864B93F001C1027 /* CommonError.swift in Sources */,
 				DFE30B3428623A1D006D6167 /* TradingPairsViewController.swift in Sources */,
+				DF7867512864B9B2001C1027 /* TradingPairsMapperImpl.swift in Sources */,
 				DFE30B022862346D006D6167 /* ViewController.swift in Sources */,
+				DF3A106D2863070E0044E0CF /* Collection.swift in Sources */,
 				DFE30AFE2862346D006D6167 /* AppDelegate.swift in Sources */,
+				DF7867402864B252001C1027 /* DefaultEnvironment.swift in Sources */,
+				DF78673A2864B20A001C1027 /* TradingPairResponse.swift in Sources */,
+				DF7867482864B416001C1027 /* URL.swift in Sources */,
+				DF78673E2864B245001C1027 /* Environment.swift in Sources */,
 				DFE30B3828623EE3006D6167 /* TradingPairCell.swift in Sources */,
 				DFE30B3628623A38006D6167 /* TradingPairsView.swift in Sources */,
+				DF78674F2864B9A2001C1027 /* TradingPairsMapper.swift in Sources */,
+				DF3A10692862FB220044E0CF /* NetworkClient.swift in Sources */,
+				DF78673C2864B21D001C1027 /* ArrayResponseDecodable.swift in Sources */,
 				DFE30B3E28624339006D6167 /* UICollectionViewCell.swift in Sources */,
 				DFE30B002862346D006D6167 /* SceneDelegate.swift in Sources */,
+				DF78673528645D47001C1027 /* TradingPairsService.swift in Sources */,
+				DF3A106428627EB80044E0CF /* TradingPairsViewLayout.swift in Sources */,
+				DF78673728645D85001C1027 /* TradingPairsServiceImpl.swift in Sources */,
+				DF7867462864B2FD001C1027 /* Endpoint.swift in Sources */,
+				DF3A106228627E7C0044E0CF /* TradingPairsDataStoreImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

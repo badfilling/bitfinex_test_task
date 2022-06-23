@@ -56,12 +56,13 @@ class TradingPairCell: UICollectionViewCell {
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
     }
     
-    func setup(with model: TradingPairCellViewModel) {
+    func setup(with model: TradingPairItemModel) {
         coinIcon.image = model.coinIcon
         fullNameLabel.text = model.coinFullName
         coinSymbolLabel.text = model.coinSymbol
         coinPriceLabel.text = model.coinPrice
         coinPriceChangeLabel.text = model.coinPriceChange
+        coinPriceChangeLabel.textColor = model.priceIncreased ? .green : .red
     }
 }
 
