@@ -25,6 +25,8 @@
 		DF78674D2864B93F001C1027 /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78674C2864B93F001C1027 /* CommonError.swift */; };
 		DF78674F2864B9A2001C1027 /* TradingPairsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF78674E2864B9A2001C1027 /* TradingPairsMapper.swift */; };
 		DF7867512864B9B2001C1027 /* TradingPairsMapperImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867502864B9B2001C1027 /* TradingPairsMapperImpl.swift */; };
+		DF7867532864C00F001C1027 /* TradingPairsRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867522864C00F001C1027 /* TradingPairsRefreshController.swift */; };
+		DF7867552864C036001C1027 /* TradingPairsRefreshControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867542864C036001C1027 /* TradingPairsRefreshControllerImpl.swift */; };
 		DFE30AFE2862346D006D6167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30AFD2862346D006D6167 /* AppDelegate.swift */; };
 		DFE30B002862346D006D6167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30AFF2862346D006D6167 /* SceneDelegate.swift */; };
 		DFE30B022862346D006D6167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B012862346D006D6167 /* ViewController.swift */; };
@@ -77,6 +79,8 @@
 		DF78674C2864B93F001C1027 /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
 		DF78674E2864B9A2001C1027 /* TradingPairsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsMapper.swift; sourceTree = "<group>"; };
 		DF7867502864B9B2001C1027 /* TradingPairsMapperImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsMapperImpl.swift; sourceTree = "<group>"; };
+		DF7867522864C00F001C1027 /* TradingPairsRefreshController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsRefreshController.swift; sourceTree = "<group>"; };
+		DF7867542864C036001C1027 /* TradingPairsRefreshControllerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsRefreshControllerImpl.swift; sourceTree = "<group>"; };
 		DFE30AFA2862346D006D6167 /* sb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFE30AFD2862346D006D6167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFE30AFF2862346D006D6167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				DF3A106128627E7C0044E0CF /* TradingPairsDataStoreImpl.swift */,
 				DF78673628645D85001C1027 /* TradingPairsServiceImpl.swift */,
 				DF7867502864B9B2001C1027 /* TradingPairsMapperImpl.swift */,
+				DF7867542864C036001C1027 /* TradingPairsRefreshControllerImpl.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				DF3A10662862FB010044E0CF /* TradingPairsDataStore.swift */,
 				DF78673428645D47001C1027 /* TradingPairsService.swift */,
 				DF78674E2864B9A2001C1027 /* TradingPairsMapper.swift */,
+				DF7867522864C00F001C1027 /* TradingPairsRefreshController.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -457,12 +463,14 @@
 				DFE30B022862346D006D6167 /* ViewController.swift in Sources */,
 				DF3A106D2863070E0044E0CF /* Collection.swift in Sources */,
 				DFE30AFE2862346D006D6167 /* AppDelegate.swift in Sources */,
+				DF7867552864C036001C1027 /* TradingPairsRefreshControllerImpl.swift in Sources */,
 				DF7867402864B252001C1027 /* DefaultEnvironment.swift in Sources */,
 				DF78673A2864B20A001C1027 /* TradingPairResponse.swift in Sources */,
 				DF7867482864B416001C1027 /* URL.swift in Sources */,
 				DF78673E2864B245001C1027 /* Environment.swift in Sources */,
 				DFE30B3828623EE3006D6167 /* TradingPairCell.swift in Sources */,
 				DFE30B3628623A38006D6167 /* TradingPairsView.swift in Sources */,
+				DF7867532864C00F001C1027 /* TradingPairsRefreshController.swift in Sources */,
 				DF78674F2864B9A2001C1027 /* TradingPairsMapper.swift in Sources */,
 				DF3A10692862FB220044E0CF /* NetworkClient.swift in Sources */,
 				DF78673C2864B21D001C1027 /* ArrayResponseDecodable.swift in Sources */,

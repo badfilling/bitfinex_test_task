@@ -33,13 +33,20 @@ class TradingPairsViewModelImpl: TradingPairsViewModel {
     private let _output: PassthroughSubject<TradingPairsViewModelOutput, Never> = .init()
     private let dataStore: TradingPairsDataStore
     private let service: TradingPairsService
+    private let refreshController: TradingPairsRefreshController
     
     private var bin = Set<AnyCancellable>()
     
-    init(dataStore: TradingPairsDataStore, service: TradingPairsService) {
+    init(
+        dataStore: TradingPairsDataStore,
+        service: TradingPairsService,
+        refreshController: TradingPairsRefreshController
+    ) {
         self.dataStore = dataStore
         self.service = service
+        self.refreshController = refreshController
         bindInput()
+        setupRefreshValues()
     }
 }
 
@@ -48,7 +55,7 @@ private extension TradingPairsViewModelImpl {
         input.sink { [weak self] input in
             switch input {
             case .viewDidLoad:
-                self?.loadPairs()
+                self?.loadPairsOnStart()
             case let .search(text):
                 self?.filterItems(with: text)
             }
@@ -59,7 +66,7 @@ private extension TradingPairsViewModelImpl {
         _output.send(.loaded(items: dataStore.filter(with: query)))
     }
     
-    func loadPairs() {
+    func loadPairsOnStart() {
         service.loadTradingPairs()
             .sink { [weak self] result in
                 guard let self = self else { return }
@@ -78,8 +85,34 @@ private extension TradingPairsViewModelImpl {
     }
 }
 
+private extension TradingPairsViewModelImpl {
+    enum Const {
+        static let refreshRate: TimeInterval = 20.0
+    }
+}
 
 private extension TradingPairsViewModelImpl {
+    /// ideally we'd want to use socket here instead of repeating http requests
+    func setupRefreshValues() {
+        refreshController
+            .createRefresher()
+            .compactMap { [weak self] _ in
+                self?.service.loadTradingPairs()
+            }
+            .switchToLatest()
+            .sink { [weak self] result in
+                   guard let self = self else { return }
+                   switch result {
+                   case let .success(elems):
+                       let itemsToDisplay = self.dataStore.update(items: elems)
+                       self._output.send(.updated(items: itemsToDisplay))
+                   case .failure(_):
+                       break
+                   }
+            }.store(in: &bin)
+        
+    }
+    
     func mockedPairs() -> [TradingPairItemModel] {
         return [
             .init(

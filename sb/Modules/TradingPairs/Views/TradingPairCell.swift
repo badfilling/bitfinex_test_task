@@ -62,7 +62,7 @@ class TradingPairCell: UICollectionViewCell {
         coinSymbolLabel.text = model.coinSymbol
         coinPriceLabel.text = model.coinPrice
         coinPriceChangeLabel.text = model.coinPriceChange
-        coinPriceChangeLabel.textColor = model.priceIncreased ? .green : .red
+        coinPriceChangeLabel.textColor = model.priceIncreased ? .systemGreen : .systemRed
     }
 }
 

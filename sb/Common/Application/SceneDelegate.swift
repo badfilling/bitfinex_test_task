@@ -34,9 +34,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             networkClient: networkClient,
             mapper: mapper
         )
+        let refreshController = TradingPairsRefreshControllerImpl(refreshRate: 10)
         let viewModel = TradingPairsViewModelImpl(
             dataStore: dataStore,
-            service: service
+            service: service,
+            refreshController: refreshController
         )
         let vc = TradingPairsViewController(viewModel: viewModel)
         return UINavigationController(rootViewController: vc)
