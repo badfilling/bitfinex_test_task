@@ -54,6 +54,7 @@ class TradingPairCell: UICollectionViewCell {
         if let shadowBounds = layer.shadowPath?.boundingBoxOfPath,
            shadowBounds.equalTo(bounds) { return }
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
+        setupShadowIfNeeded()
     }
     
     func setup(with model: TradingPairItemModel) {
@@ -123,12 +124,14 @@ private extension TradingPairCell {
         contentView.layer.borderColor = UIColor.systemGray.withAlphaComponent(0.2).cgColor
         contentView.layer.borderWidth = 2
         contentView.backgroundColor = .white
-
+    }
+    
+    func setupShadowIfNeeded() {
+        guard layer.shadowOpacity.isZero else { return }
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 4.0)
         layer.shadowRadius = 5.0
         layer.shadowOpacity = 0.3
         layer.masksToBounds = false
-        
     }
 }

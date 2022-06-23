@@ -34,6 +34,9 @@ class TradingPairsViewController: UIViewController {
         super.loadView()
         self.title = "Pairs prices"
         self.view = TradingPairsView(frame: .zero)
+        mainView.refreshPublisher.sink { [weak self] _ in
+            self?.viewModel.input.send(.forceRefresh)
+        }.store(in: &bin)
     }
     
     override func viewDidLoad() {
@@ -57,16 +60,55 @@ private extension TradingPairsViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] output in
                 switch output {
-                case let .loaded(items):
-                    self?.load(items: items)
-                case let .updated(items):
+                case let .loaded(items),
+                    let .updated(items):
                     self?.update(with: items)
+                    self?.onSuccessLoad()
+                case .showConnectionIssueIndicator:
+                    self?.onFailToLoad()
+                case .showConnectionIssueAlert:
+                    self?.showConnectionIssueAlert()
                 }
         }.store(in: &bin)
     }
     
-    func load(items: [TradingPairItemModel]) {
-        mainView.load(items: items)
+    func showConnectionIssueAlert() {
+        let alert = UIAlertController(
+            title: "Connection issues",
+            message: "It looks like you've got some connection issues. Some data might be outdated or missing.", preferredStyle: .alert
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "Refresh",
+                style: .default, handler: { [weak self] _ in
+                    self?.viewModel.input.send(.forceRefresh)
+                }
+            )
+        )
+        
+        present(alert, animated: true)
+    }
+    
+    func showIndicator() {
+        let indicator = ConnectionIssueButton(onTap: { [weak self] in
+            self?.viewModel.input.send(.connectionIndicatorTapped)
+        })
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: indicator)
+    }
+    
+    func onFailToLoad() {
+        mainView.endRefresh()
+        showIndicator()
+    }
+    
+    func onSuccessLoad() {
+        mainView.endRefresh()
+        hideIndicator()
+    }
+    
+    func hideIndicator() {
+        navigationItem.rightBarButtonItem = nil
     }
     
     func update(with items: [TradingPairItemModel]) {

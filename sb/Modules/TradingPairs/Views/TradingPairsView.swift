@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 class TradingPairsView: UIView {
     
     private typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String>
+    
+    lazy var refreshPublisher = _refreshPublisher.eraseToAnyPublisher()
+    private let _refreshPublisher = PassthroughSubject<Void, Never>()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,11 +25,19 @@ class TradingPairsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
+        return refresh
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(
             frame: .zero,
             collectionViewLayout: TradingPairsViewLayout.generate()
         )
+        cv.refreshControl = refreshControl
+        cv.alwaysBounceVertical = true
         
         cv.register(TradingPairCell.self, forCellWithReuseIdentifier: TradingPairCell.cellIdentifier)
         return cv
@@ -35,9 +47,32 @@ class TradingPairsView: UIView {
     
     private var itemsStore: [String: TradingPairItemModel] = [:]
     
-    func load(items: [TradingPairItemModel]) {
+    func update(with items: [TradingPairItemModel]) {
         updateStore(with: items)
         
+        var snapshot = dataSource.snapshot()
+        if dataSource.snapshot().itemIdentifiers.isEmpty {
+            load(items: items)
+            return
+        }
+        
+        snapshot.reconfigureItems(items.map { $0.id })
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    func endRefresh() {
+        refreshControl.endRefreshing()
+    }
+}
+
+extension TradingPairsView {
+    
+    @objc
+    private func onRefresh() {
+        _refreshPublisher.send(())
+    }
+    
+    private func load(items: [TradingPairItemModel]) {
         var snapshot = TradingPairsView.Snapshot()
         snapshot.appendSections([0])
         snapshot.appendItems(items.map { $0.id }, toSection: 0)
@@ -45,16 +80,6 @@ class TradingPairsView: UIView {
         dataSource.apply(snapshot)
     }
     
-    func update(with items: [TradingPairItemModel]) {
-        updateStore(with: items)
-        
-        var snapshot = dataSource.snapshot()
-        snapshot.reconfigureItems(items.map { $0.id })
-        dataSource.apply(snapshot, animatingDifferences: false)
-    }
-}
-
-extension TradingPairsView {
     private func updateStore(with items: [TradingPairItemModel]) {
         itemsStore = Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0) })
     }

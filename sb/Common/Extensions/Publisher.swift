@@ -14,7 +14,6 @@ extension Publisher where Output == URLSession.DataTaskPublisher.Output {
             guard let jsonRaw = try? JSONSerialization.jsonObject(with: data) else {
                 return .failure(.unknownError)
             }
-            
             let responseArray = jsonRaw as? [Any] ?? []
             var responseElements = [T]()
             for rawValue in responseArray {

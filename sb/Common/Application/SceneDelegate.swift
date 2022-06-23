@@ -24,9 +24,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createTradingPairsScreen() -> UIViewController {
-        let dataStore = TradingPairsDataStoreImpl()
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.requestCachePolicy = .reloadIgnoringLocalCacheData
+        let session = URLSession(configuration: sessionConfig)
         let networkClient = NetworkClientImpl(
-            session: URLSession.shared,
+            session: session,
             environment: DefaultEnvironment()
         )
         let mapper = TradingPairsMapperImpl()
@@ -34,7 +36,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             networkClient: networkClient,
             mapper: mapper
         )
-        let refreshController = TradingPairsRefreshControllerImpl(refreshRate: 10)
+        let refreshController = TradingPairsRefreshControllerImpl(refreshRate: 100)
+        let dataStore = TradingPairsDataStoreImpl()
         let viewModel = TradingPairsViewModelImpl(
             dataStore: dataStore,
             service: service,

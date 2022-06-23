@@ -16,10 +16,11 @@ class TradingPairsRefreshControllerImpl: TradingPairsRefreshController {
         self.refreshRate = refreshRate
     }
     
-    func createRefresher() -> AnyPublisher<Date, Never> {
+    func createRefresher() -> AnyPublisher<Void, Never> {
         Timer
             .publish(every: refreshRate, on: .main, in: .common)
             .autoconnect()
+            .map { _ in () }
             .eraseToAnyPublisher()
     }
 }

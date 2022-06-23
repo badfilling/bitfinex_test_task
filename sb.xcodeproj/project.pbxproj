@@ -27,9 +27,10 @@
 		DF7867512864B9B2001C1027 /* TradingPairsMapperImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867502864B9B2001C1027 /* TradingPairsMapperImpl.swift */; };
 		DF7867532864C00F001C1027 /* TradingPairsRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867522864C00F001C1027 /* TradingPairsRefreshController.swift */; };
 		DF7867552864C036001C1027 /* TradingPairsRefreshControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867542864C036001C1027 /* TradingPairsRefreshControllerImpl.swift */; };
+		DF7867572864E200001C1027 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867562864E200001C1027 /* UIView.swift */; };
+		DF78675A2864E23C001C1027 /* ConnectionIssueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7867592864E23C001C1027 /* ConnectionIssueButton.swift */; };
 		DFE30AFE2862346D006D6167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30AFD2862346D006D6167 /* AppDelegate.swift */; };
 		DFE30B002862346D006D6167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30AFF2862346D006D6167 /* SceneDelegate.swift */; };
-		DFE30B022862346D006D6167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B012862346D006D6167 /* ViewController.swift */; };
 		DFE30B072862346F006D6167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFE30B062862346F006D6167 /* Assets.xcassets */; };
 		DFE30B0A2862346F006D6167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE30B082862346F006D6167 /* LaunchScreen.storyboard */; };
 		DFE30B152862346F006D6167 /* sbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE30B142862346F006D6167 /* sbTests.swift */; };
@@ -81,10 +82,11 @@
 		DF7867502864B9B2001C1027 /* TradingPairsMapperImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsMapperImpl.swift; sourceTree = "<group>"; };
 		DF7867522864C00F001C1027 /* TradingPairsRefreshController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsRefreshController.swift; sourceTree = "<group>"; };
 		DF7867542864C036001C1027 /* TradingPairsRefreshControllerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingPairsRefreshControllerImpl.swift; sourceTree = "<group>"; };
+		DF7867562864E200001C1027 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		DF7867592864E23C001C1027 /* ConnectionIssueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionIssueButton.swift; sourceTree = "<group>"; };
 		DFE30AFA2862346D006D6167 /* sb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFE30AFD2862346D006D6167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFE30AFF2862346D006D6167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DFE30B012862346D006D6167 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DFE30B062862346F006D6167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFE30B092862346F006D6167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFE30B0B2862346F006D6167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,6 +196,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		DF7867582864E236001C1027 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF7867592864E23C001C1027 /* ConnectionIssueButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DFE30AF12862346D006D6167 = {
 			isa = PBXGroup;
 			children = (
@@ -220,7 +230,6 @@
 				DFE30B0B2862346F006D6167 /* Info.plist */,
 				DFE30B30286239ED006D6167 /* Modules */,
 				DFE30B2F2862356C006D6167 /* Common */,
-				DFE30B012862346D006D6167 /* ViewController.swift */,
 			);
 			path = sb;
 			sourceTree = "<group>";
@@ -263,6 +272,7 @@
 		DFE30B2F2862356C006D6167 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				DF7867582864E236001C1027 /* Views */,
 				DF78674B2864B928001C1027 /* Utils */,
 				DF7867412864B290001C1027 /* Networking */,
 				DFE30B3C2862432E006D6167 /* Extensions */,
@@ -318,6 +328,7 @@
 				DFE30B3D28624339006D6167 /* UICollectionViewCell.swift */,
 				DF3A106C2863070E0044E0CF /* Collection.swift */,
 				DF7867492864B444001C1027 /* Publisher.swift */,
+				DF7867562864E200001C1027 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -460,8 +471,8 @@
 				DF78674D2864B93F001C1027 /* CommonError.swift in Sources */,
 				DFE30B3428623A1D006D6167 /* TradingPairsViewController.swift in Sources */,
 				DF7867512864B9B2001C1027 /* TradingPairsMapperImpl.swift in Sources */,
-				DFE30B022862346D006D6167 /* ViewController.swift in Sources */,
 				DF3A106D2863070E0044E0CF /* Collection.swift in Sources */,
+				DF7867572864E200001C1027 /* UIView.swift in Sources */,
 				DFE30AFE2862346D006D6167 /* AppDelegate.swift in Sources */,
 				DF7867552864C036001C1027 /* TradingPairsRefreshControllerImpl.swift in Sources */,
 				DF7867402864B252001C1027 /* DefaultEnvironment.swift in Sources */,
@@ -476,6 +487,7 @@
 				DF78673C2864B21D001C1027 /* ArrayResponseDecodable.swift in Sources */,
 				DFE30B3E28624339006D6167 /* UICollectionViewCell.swift in Sources */,
 				DFE30B002862346D006D6167 /* SceneDelegate.swift in Sources */,
+				DF78675A2864E23C001C1027 /* ConnectionIssueButton.swift in Sources */,
 				DF78673528645D47001C1027 /* TradingPairsService.swift in Sources */,
 				DF3A106428627EB80044E0CF /* TradingPairsViewLayout.swift in Sources */,
 				DF78673728645D85001C1027 /* TradingPairsServiceImpl.swift in Sources */,

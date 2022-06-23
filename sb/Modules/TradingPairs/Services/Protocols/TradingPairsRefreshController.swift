@@ -9,5 +9,5 @@ import Combine
 import Foundation
 
 protocol TradingPairsRefreshController {
-    func createRefresher() -> AnyPublisher<Date, Never>
+    func createRefresher() -> AnyPublisher<Void, Never>
 }

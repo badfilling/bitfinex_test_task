@@ -8,7 +8,7 @@
 import Foundation
 
 protocol TradingPairsDataStore {
-    func setup(with items: [TradingPairItemModel]) -> [TradingPairItemModel]
     func update(items: [TradingPairItemModel]) -> [TradingPairItemModel]
     func filter(with query: String) -> [TradingPairItemModel]
+    var isEmpty: Bool { get }
 }
