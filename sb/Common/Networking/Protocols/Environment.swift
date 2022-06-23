@@ -9,4 +9,6 @@ import Foundation
 
 protocol Environment {
     var baseUrl: URL { get }
+    var refreshRate: TimeInterval { get }
+    var sessionTimeout: TimeInterval { get }
 }

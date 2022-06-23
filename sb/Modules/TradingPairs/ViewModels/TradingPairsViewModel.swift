@@ -16,12 +16,13 @@ protocol TradingPairsViewModel {
 enum TradingPairsViewModelInput {
     case viewDidLoad
     case search(text: String)
-    case forceRefresh
+    case pulledToRefresh
+    case alertConfirmed
     case connectionIndicatorTapped
 }
 
 enum TradingPairsViewModelOutput {
-    case loaded(items: [TradingPairItemModel])
+    case filtered(items: [TradingPairItemModel])
     case updated(items: [TradingPairItemModel])
     case showConnectionIssueIndicator
     case showConnectionIssueAlert
@@ -63,7 +64,8 @@ private extension TradingPairsViewModelImpl {
                 self?.forceRefreshSubject.send(())
             case let .search(text):
                 self?.filterItems(with: text)
-            case .forceRefresh:
+            case .alertConfirmed,
+                    .pulledToRefresh:
                 self?.forceRefreshSubject.send(())
             case .connectionIndicatorTapped:
                 self?.handleConnectionIndicator()
@@ -72,7 +74,7 @@ private extension TradingPairsViewModelImpl {
     }
     
     func filterItems(with query: String) {
-        _output.send(.loaded(items: dataStore.filter(with: query)))
+        _output.send(.filtered(items: dataStore.filter(with: query)))
     }
     
     func updatePairs(with items: [TradingPairItemModel]) {
@@ -80,12 +82,7 @@ private extension TradingPairsViewModelImpl {
     }
     
     func handleConnectionIndicator() {
-        guard !dataStore.isEmpty else {
-            _output.send(.showConnectionIssueAlert)
-            return
-        }
-        
-        forceRefreshSubject.send(())
+        _output.send(.showConnectionIssueAlert)
     }
 }
 
@@ -98,7 +95,7 @@ private extension TradingPairsViewModelImpl {
             .compactMap { [weak self] _ in
                 self?.service.loadTradingPairs()
             }
-            .switchToLatest()
+            .flatMap { $0 }
             .sink { [weak self] result in
                    guard let self = self else { return }
                    switch result {

@@ -10,10 +10,6 @@ class TradingPairsDataStoreImpl: TradingPairsDataStore {
     var items: [TradingPairItemModel] = []
     var filterQuery = ""
     
-    var isEmpty: Bool {
-        return items.isEmpty
-    }
-    
     func update(items: [TradingPairItemModel]) -> [TradingPairItemModel] {
         self.items = items
         return performFilter(with: filterQuery)

@@ -24,19 +24,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createTradingPairsScreen() -> UIViewController {
-        let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.requestCachePolicy = .reloadIgnoringLocalCacheData
-        let session = URLSession(configuration: sessionConfig)
+        let environment = DefaultEnvironment()
+        let loadPairsSessionConfig = URLSessionConfiguration.default
+        loadPairsSessionConfig.requestCachePolicy = .reloadIgnoringLocalCacheData
+        loadPairsSessionConfig.timeoutIntervalForRequest = environment.sessionTimeout
+        let session = URLSession(configuration: loadPairsSessionConfig)
         let networkClient = NetworkClientImpl(
             session: session,
-            environment: DefaultEnvironment()
+            environment: environment
         )
         let mapper = TradingPairsMapperImpl()
         let service = TradingPairsServiceImpl(
             networkClient: networkClient,
             mapper: mapper
         )
-        let refreshController = TradingPairsRefreshControllerImpl(refreshRate: 5)
+        let refreshController = TradingPairsRefreshControllerImpl(refreshRate: environment.refreshRate)
         let dataStore = TradingPairsDataStoreImpl()
         let viewModel = TradingPairsViewModelImpl(
             dataStore: dataStore,

@@ -47,12 +47,22 @@ class TradingPairsView: UIView {
     
     private var itemsStore: [String: TradingPairItemModel] = [:]
     
+    func reload(with items: [TradingPairItemModel]) {
+            updateStore(with: items)
+            
+            var snapshot = TradingPairsView.Snapshot()
+            snapshot.appendSections([0])
+            snapshot.appendItems(items.map { $0.id }, toSection: 0)
+            
+            dataSource.apply(snapshot)
+        }
+    
     func update(with items: [TradingPairItemModel]) {
         updateStore(with: items)
         
         var snapshot = dataSource.snapshot()
         if dataSource.snapshot().itemIdentifiers.isEmpty {
-            load(items: items)
+            reload(with: items)
             return
         }
         
@@ -70,14 +80,6 @@ extension TradingPairsView {
     @objc
     private func onRefresh() {
         _refreshPublisher.send(())
-    }
-    
-    private func load(items: [TradingPairItemModel]) {
-        var snapshot = TradingPairsView.Snapshot()
-        snapshot.appendSections([0])
-        snapshot.appendItems(items.map { $0.id }, toSection: 0)
-        
-        dataSource.apply(snapshot)
     }
     
     private func updateStore(with items: [TradingPairItemModel]) {

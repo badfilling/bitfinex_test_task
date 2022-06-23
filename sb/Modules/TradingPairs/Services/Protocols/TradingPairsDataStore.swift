@@ -10,5 +10,4 @@ import Foundation
 protocol TradingPairsDataStore {
     func update(items: [TradingPairItemModel]) -> [TradingPairItemModel]
     func filter(with query: String) -> [TradingPairItemModel]
-    var isEmpty: Bool { get }
 }

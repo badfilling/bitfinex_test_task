@@ -11,4 +11,12 @@ struct DefaultEnvironment: Environment {
     var baseUrl: URL {
         return URL(string: "https://api-pub.bitfinex.com/v2")!
     }
+    
+    var refreshRate: TimeInterval {
+        return 5
+    }
+    
+    var sessionTimeout: TimeInterval {
+        return 10
+    }
 }

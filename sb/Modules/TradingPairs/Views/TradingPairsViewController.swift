@@ -35,7 +35,7 @@ class TradingPairsViewController: UIViewController {
         self.title = "Pairs prices"
         self.view = TradingPairsView(frame: .zero)
         mainView.refreshPublisher.sink { [weak self] _ in
-            self?.viewModel.input.send(.forceRefresh)
+            self?.viewModel.input.send(.pulledToRefresh)
         }.store(in: &bin)
     }
     
@@ -60,8 +60,10 @@ private extension TradingPairsViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] output in
                 switch output {
-                case let .loaded(items),
-                    let .updated(items):
+                case let .filtered(items):
+                    self?.load(with: items)
+                    self?.onSuccessLoad()
+                case let .updated(items):
                     self?.update(with: items)
                     self?.onSuccessLoad()
                 case .showConnectionIssueIndicator:
@@ -82,7 +84,7 @@ private extension TradingPairsViewController {
             UIAlertAction(
                 title: "Refresh",
                 style: .default, handler: { [weak self] _ in
-                    self?.viewModel.input.send(.forceRefresh)
+                    self?.viewModel.input.send(.alertConfirmed)
                 }
             )
         )
@@ -109,6 +111,10 @@ private extension TradingPairsViewController {
     
     func hideIndicator() {
         navigationItem.rightBarButtonItem = nil
+    }
+    
+    func load(with items: [TradingPairItemModel]) {
+        mainView.reload(with: items)
     }
     
     func update(with items: [TradingPairItemModel]) {
